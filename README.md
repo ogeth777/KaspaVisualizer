@@ -83,6 +83,15 @@ This project demonstrates the speed and structure of the Kaspa BlockDAG. Unlike 
     > A cinematic, real-time 3D visualization of the Kaspa BlockDAG network. It connects to the Kaspa Mainnet to synchronize block height and simulates the parallel creation of blocks using a high-performance WebGL engine. Features interactive inspection, audio feedback, and manual camera control.
 *   **Tags**: BlockDAG, Real-time, Visualization, React Three Fiber, Kaspa.
 
+## 🤖 AI Usage Disclosure
+
+This project was developed with the assistance of AI tools (Trae AI) for:
+*   Boilerplate code generation (React + Vite setup)
+*   Three.js geometry optimization strategies
+*   Refactoring for performance (InstancedMesh implementation guidance)
+
+All logic, design decisions, and final code verification were conducted by the human developer.
+
 ---
 
 *Built with ❤️ for the Kaspa Community.*
