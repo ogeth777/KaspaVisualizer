@@ -1,14 +1,12 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, Stars, Line, Text, Float, Sparkles } from '@react-three/drei'
+import { OrbitControls, Stars, Line, Float, Sparkles } from '@react-three/drei'
 import { EffectComposer, Bloom, Vignette, Noise } from '@react-three/postprocessing'
-import { useRef, useState, useMemo, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import * as THREE from 'three'
 import './App.css'
 
 // --- CONSTANTS & TYPES ---
 const KASPA_CYAN = '#48Cca8'
-const BLOCK_SPEED = 1 // blocks per second in simulation
-const MAX_BLOCKS = 100
 
 interface BlockData {
   id: number
@@ -132,7 +130,7 @@ function Block({ data, allBlocks, isNew, onSelect, isSelected }: { data: BlockDa
 }
 
 function CameraController({ targetZ }: { targetZ: number }) {
-  const { camera, controls } = useThree()
+  const { camera } = useThree()
 
   useFrame((state, delta) => {
     // Smoothly move camera to follow the growth
@@ -153,7 +151,7 @@ function CameraController({ targetZ }: { targetZ: number }) {
   return null
 }
 
-function Scene({ statsRefs, onBlockSelect, selectedBlockId, isRunning }: { statsRefs: any, onBlockSelect: (b: BlockData) => void, selectedBlockId: number | null, isRunning: boolean }) {
+function Scene({ statsRefs, onBlockSelect, selectedBlockId, isRunning }: { statsRefs: any, onBlockSelect: (b: BlockData | null) => void, selectedBlockId: number | null, isRunning: boolean }) {
   const [blocks, setBlocks] = useState<BlockData[]>([])
   const lastIdRef = useRef(0)
   const lastTimeRef = useRef(Date.now())
@@ -177,7 +175,7 @@ function Scene({ statsRefs, onBlockSelect, selectedBlockId, isRunning }: { stats
   }, [])
 
   // --- SIMULATION LOOP ---
-  useFrame((state) => {
+  useFrame(() => {
     if (!hasStartedRef.current || !isRunning) return
 
     const now = Date.now()
@@ -280,7 +278,7 @@ function Scene({ statsRefs, onBlockSelect, selectedBlockId, isRunning }: { stats
       <CameraController targetZ={newestZ} />
       <OrbitControls makeDefault enableDamping dampingFactor={0.05} />
       
-      <EffectComposer disableNormalPass multisampling={0}>
+      <EffectComposer multisampling={0}>
         <Bloom luminanceThreshold={0.5} mipmapBlur intensity={1.5} radius={0.5} />
         <Noise opacity={0.05} />
         <Vignette eskil={false} offset={0.1} darkness={1.1} />
@@ -292,7 +290,7 @@ function Scene({ statsRefs, onBlockSelect, selectedBlockId, isRunning }: { stats
 function App() {
   const bpsRef = useRef<HTMLDivElement>(null)
   const countRef = useRef<HTMLDivElement>(null)
-  const statsRefs = useRef({ bps: null, count: null, baseHeight: 0 })
+  const statsRefs = useRef<{ bps: HTMLDivElement | null, count: HTMLDivElement | null, baseHeight: number }>({ bps: null, count: null, baseHeight: 0 })
   const [selectedBlock, setSelectedBlock] = useState<BlockData | null>(null)
   const [started, setStarted] = useState(false)
 
