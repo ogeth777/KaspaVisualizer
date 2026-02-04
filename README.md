@@ -22,7 +22,11 @@ A real-time, interactive 3D visualization of the Kaspa BlockDAG network. Created
 *   **Effects**: @react-three/postprocessing
 *   **Data**: Kaspa REST API
 
-## 🏃‍♂️ How to Run (Development)
+## 🏃‍♂️ How to Run
+
+*   **Live Demo**: [https://kaspa-visualizer-eight.vercel.app/](https://kaspa-visualizer-eight.vercel.app/)
+
+### Development
 
 1.  Clone the repository
 2.  Install dependencies:
@@ -61,9 +65,11 @@ This project demonstrates the speed and structure of the Kaspa BlockDAG. Unlike 
     *   **Framework**: Vite
     *   **Command**: `npm run build`
     *   **Output**: `dist`
-4.  Get your production URL (e.g., `https://kaspa-visualizer.vercel.app`).
-
-## 2. Demo Video Script (1-2 mins)
+4.64→4.  Get your production URL (e.g., `https://kaspa-visualizer-eight.vercel.app/`).
+65→
+66→    *Note: A `vercel.json` file is included to handle API CORS issues automatically.*
+67→
+68→## 2. Demo Video Script (1-2 mins)
 
 1.  **Intro (10s)**: Start on the "INITIALIZE SIMULATION" screen. Click to start. Hear the sound.
 2.  **Concept (20s)**: "This connects to Kaspa Mainnet in real-time."

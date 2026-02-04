@@ -159,7 +159,8 @@ function Scene({ statsRefs, onBlockSelect, selectedBlockId, isRunning }: { stats
 
   // Fetch initial block count
   useEffect(() => {
-    fetch('https://api.kaspa.org/info/blockdag')
+    // Use proxy path to avoid CORS issues
+    fetch('/api/proxy/info/blockdag')
       .then(res => res.json())
       .then(data => {
         if (data && data.blockCount) {
@@ -169,8 +170,19 @@ function Scene({ statsRefs, onBlockSelect, selectedBlockId, isRunning }: { stats
       })
       .catch(e => {
         console.error("Failed to fetch Kaspa stats", e)
-        statsRefs.current.baseHeight = 100000000 // Fallback
-        hasStartedRef.current = true
+        // Fallback to direct call if proxy fails (e.g. local without proxy)
+        fetch('https://api.kaspa.org/info/blockdag')
+            .then(res => res.json())
+            .then(data => {
+                 if (data && data.blockCount) {
+                    statsRefs.current.baseHeight = parseInt(data.blockCount)
+                    hasStartedRef.current = true
+                 }
+            })
+            .catch(() => {
+                statsRefs.current.baseHeight = 100000000 // Ultimate Fallback
+                hasStartedRef.current = true
+            })
       })
   }, [])
 

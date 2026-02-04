@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/proxy/:match*",
+      "destination": "https://api.kaspa.org/:match*"
+    }
+  ]
+}
