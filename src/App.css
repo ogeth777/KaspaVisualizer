@@ -9,7 +9,7 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #050505;
+  background-color: #000510; /* Darker blue-black */
 }
 
 .hud-overlay {
@@ -30,7 +30,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(72, 204, 168, 0.3);
+  border-bottom: 1px solid rgba(56, 152, 236, 0.3);
   padding-bottom: 1rem;
 }
 
@@ -42,26 +42,26 @@ body {
 }
 
 .highlight {
-  color: #48Cca8; /* Kaspa Cyan */
+  color: #3898EC; /* SUI Blue */
 }
 
 .status {
   font-family: 'Courier New', monospace;
   font-size: 0.9rem;
-  color: #48Cca8;
-  border: 1px solid #48Cca8;
+  color: #3898EC;
+  border: 1px solid #3898EC;
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
-  background: rgba(72, 204, 168, 0.1);
+  background: rgba(56, 152, 236, 0.1);
   animation: pulse 2s infinite;
 }
 
 .stats-panel {
   align-self: flex-start;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 5, 20, 0.8);
   backdrop-filter: blur(10px);
   padding: 1.5rem;
-  border-left: 3px solid #48Cca8;
+  border-left: 3px solid #3898EC;
   border-radius: 0 10px 10px 0;
   min-width: 250px;
 }
@@ -76,7 +76,7 @@ body {
 
 .label {
   font-size: 0.7rem;
-  color: #888;
+  color: #889;
   letter-spacing: 1px;
   margin-bottom: 0.2rem;
 }
@@ -90,32 +90,112 @@ body {
 
 .unit {
   font-size: 1rem;
-  color: #48Cca8;
+  color: #3898EC;
 }
 
 .bar-container {
   width: 100%;
   height: 6px;
-  background: #222;
+  background: #112;
   border-radius: 3px;
   margin-top: 5px;
   overflow: hidden;
 }
 
-.bar {
+.bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #48Cca8, #00e5ff);
-  box-shadow: 0 0 10px #48Cca8;
+  background: linear-gradient(90deg, #3898EC, #6FBcF0);
+  border-radius: 3px;
+}
+
+.details-panel {
+  pointer-events: auto;
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 5, 20, 0.9);
+  border: 1px solid #3898EC;
+  padding: 1.5rem;
+  border-radius: 8px;
+  min-width: 300px;
+}
+
+.details-panel h3 {
+  margin-top: 0;
+  color: #3898EC;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 0.5rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.mono {
+  font-family: monospace;
+  color: #ccc;
+}
+
+.close-btn {
+  width: 100%;
+  margin-top: 1rem;
+  background: transparent;
+  border: 1px solid #666;
+  color: white;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.close-btn:hover {
+  border-color: #3898EC;
+  color: #3898EC;
 }
 
 .footer {
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   font-size: 0.8rem;
-  opacity: 0.5;
+  color: #666;
+}
+
+.controls button {
+  pointer-events: auto;
+  background: #3898EC;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.controls button:hover {
+  transform: scale(1.05);
 }
 
 @keyframes pulse {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
